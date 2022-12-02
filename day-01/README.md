@@ -1,6 +1,6 @@
 # Day One: Ruby
 
-To run this program, you will need the [Ruby runtime](https://www.ruby-lang.org/en/downloads/) installed. This is built in and likely works best in Ruby 2.7.5.
+My solutions for [Day 1](https://adventofcode.com/2022/day/1) of AOC 2022, written in Ruby. To run this program, you will need the [Ruby runtime](https://www.ruby-lang.org/en/downloads/) installed. This is built in and likely works best in Ruby 2.7.5.
 
 ## Running Tests
 
