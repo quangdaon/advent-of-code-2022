@@ -16,9 +16,9 @@ public class Processor {
     };
   }
 
-  public Choices transposePlayerChoice(Choices opponent, int outcome) {
+  public Choices transposePlayerChoice(int opponentIndex, int outcome) {
     int shift = outcome - 1;
-    int newIndex = (opponent.ordinal() + 3 + shift) % 3;
+    int newIndex = (opponentIndex + 3 + shift) % 3;
     return Choices.values()[newIndex];
   }
 
@@ -59,7 +59,7 @@ public class Processor {
     for (int i = 0; i < results.length; i++) {
       int[] choices = parseChoices(results[i]);
       Choices opponent = Choices.values()[choices[0]];
-      Choices player = transposePlayerChoice(opponent, choices[1]);
+      Choices player = transposePlayerChoice(choices[0], choices[1]);
       scores[i] = calculateScore(opponent, player);
     }
 

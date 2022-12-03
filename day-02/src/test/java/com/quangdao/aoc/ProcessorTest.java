@@ -52,21 +52,21 @@ public class ProcessorTest {
     public static class TransposePlayerChoiceTest {
         
 
-        private Choices opponent;
+        private int opponentIndex;
         private int outcome;
         private Choices expected;
 
         @Parameters
         public static Collection<Object[]> data() {
             return Arrays.asList(new Object[][] {
-                    { Choices.Rock, 0, Choices.Scissors },
-                    { Choices.Rock, 1, Choices.Rock },
-                    { Choices.Rock, 2, Choices.Paper }
+                    { Choices.Rock.ordinal(), 0, Choices.Scissors },
+                    { Choices.Rock.ordinal(), 1, Choices.Rock },
+                    { Choices.Rock.ordinal(), 2, Choices.Paper }
             });
         }
 
-        public TransposePlayerChoiceTest(Choices opponent, int outcome, Choices expected) {
-            this.opponent = opponent;
+        public TransposePlayerChoiceTest(int opponentIndex, int outcome, Choices expected) {
+            this.opponentIndex = opponentIndex;
             this.outcome = outcome;
             this.expected = expected;
         }
@@ -74,7 +74,7 @@ public class ProcessorTest {
         @Test
         public void testTransposePlayerChoice() {
             Processor processor = new Processor();
-            Choices results = processor.transposePlayerChoice(opponent, outcome);
+            Choices results = processor.transposePlayerChoice(opponentIndex, outcome);
 
             assertEquals(expected, results);
         }
