@@ -1,5 +1,6 @@
 package com.quangdao.aoc;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class Processor {
@@ -11,8 +12,8 @@ public class Processor {
     char[] choices = row.replace(" ", "").toCharArray();
 
     return new int[] {
-        java.util.Arrays.binarySearch(OPPONENT_SYMBOLS, choices[0]),
-        java.util.Arrays.binarySearch(PLAYER_SYMBOLS, choices[1])
+        Arrays.binarySearch(OPPONENT_SYMBOLS, choices[0]),
+        Arrays.binarySearch(PLAYER_SYMBOLS, choices[1])
     };
   }
 
