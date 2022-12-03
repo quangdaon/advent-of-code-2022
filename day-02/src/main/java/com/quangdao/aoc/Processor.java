@@ -1,6 +1,5 @@
 package com.quangdao.aoc;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class Processor {
@@ -8,13 +7,19 @@ public class Processor {
   private static final char[] PLAYER_SYMBOLS = { 'X', 'Y', 'Z' };
   private static final char[] OPPONENT_SYMBOLS = { 'A', 'B', 'C' };
 
-  public Choices[] parseChoices(String row) {
+  public int[] parseChoices(String row) {
     char[] choices = row.replace(" ", "").toCharArray();
 
-    return new Choices[] {
-        Choices.values()[java.util.Arrays.binarySearch(OPPONENT_SYMBOLS, choices[0])],
-        Choices.values()[java.util.Arrays.binarySearch(PLAYER_SYMBOLS, choices[1])]
+    return new int[] {
+        java.util.Arrays.binarySearch(OPPONENT_SYMBOLS, choices[0]),
+        java.util.Arrays.binarySearch(PLAYER_SYMBOLS, choices[1])
     };
+  }
+
+  public Choices transposePlayerChoice(Choices opponent, int outcome) {
+    int shift = outcome - 1;
+    int newIndex = (opponent.ordinal() + 3 + shift) % 3;
+    return Choices.values()[newIndex];
   }
 
   public int calculateScore(Choices opponent, Choices player) {
@@ -37,14 +42,27 @@ public class Processor {
     int[] scores = new int[results.length];
 
     for (int i = 0; i < results.length; i++) {
-      Choices[] choices = parseChoices(results[i]);
-      scores[i] = calculateScore(choices[0], choices[1]);
+      int[] choices = parseChoices(results[i]);
+      Choices opponent = Choices.values()[choices[0]];
+      Choices player = Choices.values()[choices[1]];
+      scores[i] = calculateScore(opponent, player);
     }
 
     return IntStream.of(scores).sum();
   }
 
   public int processPart2Solution(String input) {
-    return 123;
+    String[] results = input.split("\n");
+
+    int[] scores = new int[results.length];
+
+    for (int i = 0; i < results.length; i++) {
+      int[] choices = parseChoices(results[i]);
+      Choices opponent = Choices.values()[choices[0]];
+      Choices player = transposePlayerChoice(opponent, choices[1]);
+      scores[i] = calculateScore(opponent, player);
+    }
+
+    return IntStream.of(scores).sum();
   }
 }

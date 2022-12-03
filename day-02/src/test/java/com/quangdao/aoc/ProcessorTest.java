@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Scanner;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -24,18 +23,18 @@ public class ProcessorTest {
     @RunWith(Parameterized.class)
     public static class ParseChoicesTest {
         private String row;
-        private Choices[] expected;
+        private int[] expected;
 
         @Parameters
         public static Collection<Object[]> data() {
             return Arrays.asList(new Object[][] {
-                    { "A X", new Choices[] { Choices.Rock, Choices.Rock } },
-                    { "A Z", new Choices[] { Choices.Rock, Choices.Scissors } },
-                    { "C Y", new Choices[] { Choices.Scissors, Choices.Paper } }
+                    { "A X", new int[] { 0, 0 } },
+                    { "A Z", new int[] { 0, 2 } },
+                    { "C Y", new int[] { 2, 1 } }
             });
         }
 
-        public ParseChoicesTest(String row, Choices[] expected) {
+        public ParseChoicesTest(String row, int[] expected) {
             this.row = row;
             this.expected = expected;
         }
@@ -43,9 +42,41 @@ public class ProcessorTest {
         @Test
         public void testParseChoices() {
             Processor processor = new Processor();
-            Choices[] results = processor.parseChoices(row);
+            int[] results = processor.parseChoices(row);
 
             assertArrayEquals(expected, results);
+        }
+    }
+    
+    @RunWith(Parameterized.class)
+    public static class TransposePlayerChoiceTest {
+        
+
+        private Choices opponent;
+        private int outcome;
+        private Choices expected;
+
+        @Parameters
+        public static Collection<Object[]> data() {
+            return Arrays.asList(new Object[][] {
+                    { Choices.Rock, 0, Choices.Scissors },
+                    { Choices.Rock, 1, Choices.Rock },
+                    { Choices.Rock, 2, Choices.Paper }
+            });
+        }
+
+        public TransposePlayerChoiceTest(Choices opponent, int outcome, Choices expected) {
+            this.opponent = opponent;
+            this.outcome = outcome;
+            this.expected = expected;
+        }
+
+        @Test
+        public void testTransposePlayerChoice() {
+            Processor processor = new Processor();
+            Choices results = processor.transposePlayerChoice(opponent, outcome);
+
+            assertEquals(expected, results);
         }
     }
 
@@ -129,6 +160,24 @@ public class ProcessorTest {
                 String sampleInput = scanner.next();
 
                 assertEquals(15, processor.processPart1Solution(sampleInput));
+
+                scanner.close();
+            } catch (FileNotFoundException e) {
+                assertTrue(false);
+            }
+        }
+
+        @Test
+        public void testPart2Solution_givenAocSample_returnsProvidedResults() {
+            try {
+                Processor processor = new Processor();
+
+                File sampleInputFile = new File("./inputs/input.sample.txt");
+                Scanner scanner = new Scanner(sampleInputFile);
+                scanner.useDelimiter("\\Z");
+                String sampleInput = scanner.next();
+
+                assertEquals(12, processor.processPart2Solution(sampleInput));
 
                 scanner.close();
             } catch (FileNotFoundException e) {
