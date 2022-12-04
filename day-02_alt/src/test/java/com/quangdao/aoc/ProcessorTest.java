@@ -15,14 +15,14 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 public class ProcessorTest {
-    private final String INPUT_FILE_PATH = "D:\\Development\\advent-of-code\\advent-of-code-2022\\day-02\\inputs\\input.sample.txt";
+    private static final String SAMPLE_INPUT_FILEPATH = "./inputs/input.sample.txt";
 
     @Test
     public void testPart1Solution_givenAocSample_returnsProvidedResults() {
         try {
             Processor processor = new Processor();
 
-            File sampleInputFile = new File(INPUT_FILE_PATH);
+            File sampleInputFile = new File(SAMPLE_INPUT_FILEPATH);
             Scanner scanner = new Scanner(sampleInputFile);
             scanner.useDelimiter("\\Z");
             String sampleInput = scanner.next();
@@ -40,7 +40,7 @@ public class ProcessorTest {
         try {
             Processor processor = new Processor();
 
-            File sampleInputFile = new File(INPUT_FILE_PATH);
+            File sampleInputFile = new File(SAMPLE_INPUT_FILEPATH);
             Scanner scanner = new Scanner(sampleInputFile);
             scanner.useDelimiter("\\Z");
             String sampleInput = scanner.next();

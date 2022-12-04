@@ -14,11 +14,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-/**
- * Unit test for simple App.
- */
 @RunWith(Enclosed.class)
 public class ProcessorTest {
+    private static final String SAMPLE_INPUT_FILEPATH = "./inputs/input.sample.txt";
 
     @RunWith(Parameterized.class)
     public static class ParseChoicesTest {
@@ -148,13 +146,12 @@ public class ProcessorTest {
     }
 
     public static class SolutionsTest {
-
         @Test
         public void testPart1Solution_givenAocSample_returnsProvidedResults() {
             try {
                 Processor processor = new Processor();
 
-                File sampleInputFile = new File("./inputs/input.sample.txt");
+                File sampleInputFile = new File(SAMPLE_INPUT_FILEPATH);
                 Scanner scanner = new Scanner(sampleInputFile);
                 scanner.useDelimiter("\\Z");
                 String sampleInput = scanner.next();
@@ -172,7 +169,7 @@ public class ProcessorTest {
             try {
                 Processor processor = new Processor();
 
-                File sampleInputFile = new File("./inputs/input.sample.txt");
+                File sampleInputFile = new File(SAMPLE_INPUT_FILEPATH);
                 Scanner scanner = new Scanner(sampleInputFile);
                 scanner.useDelimiter("\\Z");
                 String sampleInput = scanner.next();

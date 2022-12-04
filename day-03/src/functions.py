@@ -21,6 +21,7 @@ def find_common_item(group):
 
 def get_item_priority(char):
   charcode = ord(char)
+  # 65 = A; 90 = Z; 97 = a; 122 = z
   if charcode >= 65 and charcode <= 90:
     return charcode - 38
   if charcode >= 97 and charcode <= 122:
@@ -29,12 +30,12 @@ def get_item_priority(char):
 
 def divide_list(items, batch_size):
   batches = []
-  batch = []
+  current_batch = []
   for i in range(0, len(items)):
-    batch.append(items[i])
-    if len(batch) >= batch_size:
-      batches.append(batch)
-      batch = []
+    current_batch.append(items[i])
+    if len(current_batch) >= batch_size:
+      batches.append(current_batch)
+      current_batch = []
   return batches
 
 def process_part_1_solution(input_txt):

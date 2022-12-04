@@ -9,11 +9,13 @@ import java.util.Scanner;
  *
  */
 public class App {
+    private static final String INPUT_FILEPATH = "./inputs/input.txt";
+    
     public static void main(String[] args) {
         try {
             Processor processor = new Processor();
 
-            File inputFile = new File("./inputs/input.txt");
+            File inputFile = new File(INPUT_FILEPATH);
             Scanner scanner = new Scanner(inputFile);
             scanner.useDelimiter("\\Z");
             String inputText = scanner.next();
