@@ -1,6 +1,6 @@
 # Day Two: Python
 
-My solutions for [Day 3](https://adventofcode.com/2022/day/3) of AOC 2022, written in Bash. To run this program, you will need .
+My solutions for [Day 3](https://adventofcode.com/2022/day/3) of AOC 2022, written in Python. To run this program, you will need Python installed.
 
 ## Running Tests
 
