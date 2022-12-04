@@ -13,9 +13,7 @@ def find_common_item(group):
   shortest = min(group, key=len)
   for char in shortest:
     for inventory in group:
-      try:
-        inventory.index(char)
-      except:
+      if not inventory.__contains__(char):
         break
     else:
       return char
