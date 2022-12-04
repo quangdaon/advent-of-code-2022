@@ -40,5 +40,35 @@ Namespace AdventOfCode2022.App.Tests
       Sub Contains_GivenDisconnectedRange_ReturnsFalse
         Assert.False(TestRange.Contains(New Range(30, 31)))
       End Sub
+
+      <Fact>
+      Sub Overlaps_GivenUpperOverlappingRange_ReturnsTrue
+        Assert.True(TestRange.Overlaps(New Range(18, 22)))
+      End Sub
+
+      <Fact>
+      Sub Overlaps_GivenLowerOverlappingRange_ReturnsTrue
+        Assert.True(TestRange.Overlaps(New Range(8, 12)))
+      End Sub
+
+      <Fact>
+      Sub Overlaps_GivenContainedRange_ReturnsTrue
+        Assert.True(TestRange.Overlaps(New Range(14, 16)))
+      End Sub
+
+      <Fact>
+      Sub Overlaps_GivenWrappingRange_ReturnsTrue
+        Assert.True(TestRange.Overlaps(New Range(5, 32)))
+      End Sub
+
+      <Fact>
+      Sub Overlaps_GivenRangeOverUpperBound_ReturnsFalse
+        Assert.False(TestRange.Overlaps(New Range(30, 31)))
+      End Sub
+
+      <Fact>
+      Sub Overlaps_GivenRangeUnderLowerBound_ReturnsFalse
+        Assert.False(TestRange.Overlaps(New Range(4, 5)))
+      End Sub
     End Class
 End Namespace

@@ -11,5 +11,15 @@ Public Module Models
     Public Function Contains(comparison As Range) As Boolean
       Return (Min <= comparison.Min) AndAlso (Max >= comparison.Max)
     End Function
+
+    Public Function Overlaps(comparison As Range) As Boolean
+      If Max < comparison.Min Then
+        Return False
+      End If
+      If Min > comparison.Max Then
+        Return False
+      End If
+      Return True
+    End Function
   End Class
 End Module

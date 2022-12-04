@@ -17,23 +17,32 @@ Public Module Processor
     Dim containedCount = 0
 
     For Each row As String in rows
-      Try
-        Dim ranges = ParseAssignmentsRow(row)
-        Dim range1 = ranges.Item1
-        Dim range2 = ranges.Item2
+      Dim ranges = ParseAssignmentsRow(row)
+      Dim range1 = ranges.Item1
+      Dim range2 = ranges.Item2
 
-        If range1.Contains(range2) OrElse range2.Contains(range1) Then
-          containedCount += 1
-        End If
-      Catch ex As Exception
-        Console.WriteLine($"Exception Occurred on {row}")
-      End Try
+      If range1.Contains(range2) OrElse range2.Contains(range1) Then
+        containedCount += 1
+      End If
     Next
 
     Return containedCount
   End Function
 
   Public Function ProcessPart2Solution(input As String)
-    Return 13
+    Dim rows = input.Split(Environment.NewLine)
+    Dim containedCount = 0
+
+    For Each row As String in rows
+      Dim ranges = ParseAssignmentsRow(row)
+      Dim range1 = ranges.Item1
+      Dim range2 = ranges.Item2
+
+      If range1.Overlaps(range2) Then
+        containedCount += 1
+      End If
+    Next
+
+    Return containedCount
   End Function
 End Module

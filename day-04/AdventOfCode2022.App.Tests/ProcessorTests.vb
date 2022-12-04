@@ -44,7 +44,7 @@ Namespace AdventOfCode2022.App.Tests
             Assert.Equal(2, result)
         End Sub
 
-        <Fact(Skip:= "Not ready.")>
+        <Fact>
         Sub ProcessPart2Solution_GivenAocSample_ReturnsProvidedResult()
             Dim input As String
             Using textReader As New StreamReader(SAMPLE_INPUT_FILENAME)
@@ -52,7 +52,7 @@ Namespace AdventOfCode2022.App.Tests
             End Using
 
             Dim result = ProcessPart2Solution(input)
-            ' Assert.Equal(2, result)
+            Assert.Equal(4, result)
         End Sub
     End Class
 End Namespace
