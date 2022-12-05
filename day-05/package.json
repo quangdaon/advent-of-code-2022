@@ -1,0 +1,25 @@
+{
+  "name": "aoc-2022-day-5",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "This repository contains my solutions to [Advent of Code 2022](https://adventofcode.com/2022). Naturally, it contains spoilers for the challenges.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index",
+    "test": "jasmine --config=tests/support/jasmine.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quangdaon/advent-of-code-2022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quangdaon/advent-of-code-2022/issues"
+  },
+  "homepage": "https://github.com/quangdaon/advent-of-code-2022#readme",
+  "devDependencies": {
+    "jasmine": "^4.5.0"
+  }
+}

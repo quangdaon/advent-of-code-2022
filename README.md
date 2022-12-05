@@ -10,8 +10,8 @@ My personal challenge for this year is to solve each challenge using a different
 - [Day 2: Java](./day-02)
 - [Day 3: Python](./day-03)
 - [Day 4: Visual Basic (VB.NET)](./day-04)
+- [Day 5: JavaScript](./day-05)
 <!--
-- [Day 5: TBD](./day-05)
 - [Day 6: TBD](./day-06)
 - [Day 7: TBD](./day-07)
 - [Day 8: TBD](./day-08)
