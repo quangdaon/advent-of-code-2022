@@ -1,9 +1,11 @@
 import {
-  executeInstruction,
+  executeInstructionByCrate,
+  executeInstructionByStack,
   getTops,
   parseInstructions,
   parseStacks,
   processPart1Solution,
+  processPart2Solution,
 } from '../src/functions.js';
 import fs from 'fs';
 const readFile = fs.promises.readFile;
@@ -47,14 +49,14 @@ describe('parseStacks', () => {
   });
 });
 
-describe('executeInstruction', () => {
+describe('executeInstructionByCrate', () => {
   it('moves single letter instruction', () => {
     const stacks = {
       1: ['A', 'B', 'C'],
       2: ['D', 'E'],
     };
 
-    executeInstruction(stacks, { amount: 1, from: 1, to: 2 });
+    executeInstructionByCrate(stacks, { amount: 1, from: 1, to: 2 });
 
     expect(stacks).toEqual({
       1: ['A', 'B'],
@@ -68,7 +70,7 @@ describe('executeInstruction', () => {
       2: ['E', 'F'],
     };
 
-    executeInstruction(stacks, { amount: 2, from: 1, to: 2 });
+    executeInstructionByCrate(stacks, { amount: 2, from: 1, to: 2 });
 
     expect(stacks).toEqual({
       1: ['A', 'B'],
@@ -83,12 +85,74 @@ describe('executeInstruction', () => {
       3: ['G', 'H', 'I'],
     };
 
-    executeInstruction(stacks, { amount: 2, from: 3, to: 1 });
+    executeInstructionByCrate(stacks, { amount: 2, from: 3, to: 1 });
 
     expect(stacks).toEqual({
       1: ['A', 'B', 'C', 'D', 'I', 'H'],
       2: ['E', 'F'],
       3: ['G'],
+    });
+  });
+});
+
+describe('executeInstructionByStack', () => {
+  it('moves single letter instruction', () => {
+    const stacks = {
+      1: ['A', 'B', 'C'],
+      2: ['D', 'E'],
+    };
+
+    executeInstructionByStack(stacks, { amount: 1, from: 1, to: 2 });
+
+    expect(stacks).toEqual({
+      1: ['A', 'B'],
+      2: ['D', 'E', 'C'],
+    });
+  });
+
+  it('maintains order for multiple letter instruction', () => {
+    const stacks = {
+      1: ['A', 'B', 'C', 'D'],
+      2: ['E', 'F'],
+    };
+
+    executeInstructionByStack(stacks, { amount: 2, from: 1, to: 2 });
+
+    expect(stacks).toEqual({
+      1: ['A', 'B'],
+      2: ['E', 'F', 'C', 'D'],
+    });
+  });
+
+  it('jumps stacks', () => {
+    const stacks = {
+      1: ['A', 'B', 'C', 'D'],
+      2: ['E', 'F'],
+      3: ['G', 'H', 'I'],
+    };
+
+    executeInstructionByStack(stacks, { amount: 2, from: 3, to: 1 });
+
+    expect(stacks).toEqual({
+      1: ['A', 'B', 'C', 'D', 'H', 'I'],
+      2: ['E', 'F'],
+      3: ['G'],
+    });
+  });
+
+  it('moves larger stacks', () => {
+    const stacks = {
+      1: ['A', 'B', 'C', 'D'],
+      2: ['E', 'F'],
+      3: ['G', 'H', 'I', 'J', 'K'],
+    };
+
+    executeInstructionByStack(stacks, { amount: 3, from: 3, to: 2 });
+
+    expect(stacks).toEqual({
+      1: ['A', 'B', 'C', 'D'],
+      2: ['E', 'F', 'I', 'J', 'K'],
+      3: ['G', 'H'],
     });
   });
 });
@@ -118,8 +182,8 @@ describe('solutions', () => {
     expect(result).toBe('CMZ');
   });
 
-  xit('returns correct solution for part 2 sample', () => {
+  it('returns correct solution for part 2 sample', () => {
     const result = processPart2Solution(input);
-    expect(result).toBe('TBD');
+    expect(result).toBe('MCD');
   });
 });

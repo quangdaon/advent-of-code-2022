@@ -34,7 +34,7 @@ export const parseStacks = (drawing) => {
   return stacks;
 };
 
-export const executeInstruction = (stacks, instruction) => {
+export const executeInstructionByCrate = (stacks, instruction) => {
   const { amount, from, to } = instruction;
   const source = stacks[from];
   const destination = stacks[to];
@@ -47,6 +47,14 @@ export const executeInstruction = (stacks, instruction) => {
   }
 };
 
+export const executeInstructionByStack = (stacks, instruction) => {
+  const { amount, from, to } = instruction;
+  const source = stacks[from];
+  const destination = stacks[to];
+
+  destination.push(...source.splice(-amount, amount));
+};
+
 export const getTops = (stacks) => {
   let stringResult = '';
   for (const key of Object.keys(stacks).sort()) {
@@ -57,22 +65,35 @@ export const getTops = (stacks) => {
   return stringResult;
 };
 
-export const processPart1Solution = (input) => {
+const parseInput = (input) => {
   const [stacksDrawing, instructionsText] = input
     .split(/(\r?\n){2}/)
     .filter((e) => e.trim());
   const stacks = parseStacks(stacksDrawing);
   const instructions = instructionsText
     .split(/\r?\n/)
+    .filter((e) => e.trim())
     .map((e) => parseInstructions(e));
 
+  return [stacks, instructions];
+};
+
+export const processPart1Solution = (input) => {
+  const [stacks, instructions] = parseInput(input);
+
   for (const instruction of instructions) {
-    executeInstruction(stacks, instruction);
+    executeInstructionByCrate(stacks, instruction);
   }
 
   return getTops(stacks);
 };
 
 export const processPart2Solution = (input) => {
-  return 'XYZ';
+  const [stacks, instructions] = parseInput(input);
+
+  for (const instruction of instructions) {
+    executeInstructionByStack(stacks, instruction);
+  }
+
+  return getTops(stacks);
 };
