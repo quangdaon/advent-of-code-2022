@@ -39,12 +39,7 @@ export const executeInstructionByCrate = (stacks, instruction) => {
   const source = stacks[from];
   const destination = stacks[to];
 
-  let movesRemaining = amount;
-
-  while (movesRemaining > 0) {
-    destination.push(source.pop());
-    movesRemaining--;
-  }
+  destination.push(...source.splice(-amount, amount).reverse());
 };
 
 export const executeInstructionByStack = (stacks, instruction) => {
