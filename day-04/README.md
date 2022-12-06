@@ -1,4 +1,4 @@
-# Day Two: Visual Basic (VB.NET)
+# Day Four: Visual Basic (VB.NET)
 
 My solutions for [Day 4](https://adventofcode.com/2022/day/4) of AOC 2022, written in VB using the .NET 6 SDK/runtime. To run this program, you will need [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) installed.
 

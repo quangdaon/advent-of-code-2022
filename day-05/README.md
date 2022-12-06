@@ -1,4 +1,4 @@
-# Day Two: JavaScript (Node.JS)
+# Day Five: JavaScript (Node.JS)
 
 My solutions for [Day 5](https://adventofcode.com/2022/day/5) of AOC 2022, written in JS using the Node.js runtime. To run this program, you will need [Node.js](https://nodejs.org/en/) installed.
 
