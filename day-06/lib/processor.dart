@@ -5,8 +5,7 @@ bool stringHasRepeatingCharacter(String str) {
   return false;
 }
 
-int processPart1Result(String input) {
-  int bufferSize = 4;
+int endOfFirstNonRepeatingSequence(String input, int bufferSize) {
   int pointer = bufferSize;
 
   while(pointer <= input.length) {
@@ -20,6 +19,10 @@ int processPart1Result(String input) {
   return -1;
 }
 
+int processPart1Result(String input) {
+  return endOfFirstNonRepeatingSequence(input, 4);
+}
+
 int processPart2Result(String input) {
-  return 7;
+  return endOfFirstNonRepeatingSequence(input, 14);
 }
